@@ -16,7 +16,7 @@ module.exports = {
     rules: [{ test: /\.(js|jsx)$/, use: "babel-loader" }]
   },
   devServer: {
-    contentBase: path.resolve(__dirname, "dist"),
+    contentBase: path.resolve(__dirname, "assets"),
     hot: true
   },
   plugins: [

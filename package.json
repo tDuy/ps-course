@@ -4,7 +4,7 @@
   "description": "ps admin",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open",
+    "start": "webpack-dev-server --port 3000 --open",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean-dist": "rimraf ./dist && mkdir dist",
     "prebuild": "npm-run-all clean-dist",
@@ -14,14 +14,14 @@
     "type": "git",
     "url": "none"
   },
-  "keywords": [
-    "react"
-  ],
+  "keywords": ["react"],
   "author": "Duy Tu",
   "license": "ISC",
   "dependencies": {
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
     "babel": "^6.23.0",
@@ -33,6 +33,7 @@
     "npm-run-all": "^4.1.2",
     "open": "0.0.5",
     "rimraf": "^2.6.2",
+    "uglifyjs-webpack-plugin": "^1.1.6",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.10.0"
   }
