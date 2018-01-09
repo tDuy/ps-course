@@ -1,18 +1,49 @@
 import React from "react";
-
+import { NavLink } from "react-router-dom";
 export default function Header() {
   return (
     <nav className="navbar navbar-default">
       <div className="container-fluid">
-        <a href="/" className="navbar-brand">
-          <img src="/images/pluralsight-logo.png" />
-        </a>
+        <NavLink to="/" className="navbar-brand">
+          LOGO
+        </NavLink>
         <ul className="nav navbar-nav">
           <li>
-            <a href="/">Home</a>
+            <NavLink
+              exact
+              to="/"
+              activeClassName="active"
+              activeStyle={{
+                color: "#fff",
+                backgroundColor: "#ff8b54"
+              }}
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <a href="/#about">About</a>
+            <NavLink
+              to="/courses"
+              activeClassName="active"
+              activeStyle={{
+                color: "#fff",
+                backgroundColor: "#ff8b54"
+              }}
+            >
+              Courses
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/about"
+              activeClassName="active"
+              activeStyle={{
+                color: "#fff",
+                backgroundColor: "#ff8b54"
+              }}
+            >
+              About
+            </NavLink>
           </li>
         </ul>
       </div>

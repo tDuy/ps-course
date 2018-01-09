@@ -4,8 +4,15 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, "src/app.jsx"),
-    vendor: ["react", "react-dom"]
+    main: path.resolve(__dirname, "src/index.jsx"),
+    vendor: [
+      "react",
+      "react-dom",
+      "react-router",
+      "react-router-dom",
+      "redux",
+      "react-redux"
+    ]
   },
   output: {
     filename: "[name].[hash].js",
@@ -16,10 +23,14 @@ module.exports = {
     rules: [{ test: /\.(js|jsx)$/, use: "babel-loader" }]
   },
   devServer: {
+    historyApiFallback: true,
     contentBase: path.resolve(__dirname, "assets"),
     hot: true
   },
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "vendor"
+    }),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       inject: true
