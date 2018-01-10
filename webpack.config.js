@@ -1,6 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+// const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -15,7 +15,7 @@ module.exports = {
     ]
   },
   output: {
-    filename: "[name].[hash].js",
+    filename: "[name].js",
     path: path.resolve(__dirname, "dist")
   },
   devtool: "source-map",
@@ -24,17 +24,17 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    contentBase: path.resolve(__dirname, "assets"),
+    contentBase: path.resolve(__dirname, "dist"),
     hot: true
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name: "vendor"
     }),
-    new HtmlWebpackPlugin({
-      template: "./src/index.html",
-      inject: true
-    }),
+    // new HtmlWebpackPlugin({
+    //   template: "./src/index.html",
+    //   inject: true
+    // }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ]

@@ -5,7 +5,7 @@ import Header from "./common/Header.jsx";
 export default class App extends React.Component {
   render() {
     return (
-      <div className="container-fluid">
+      <div className="container" style={{ margin: "0 auto" }}>
         <Header />
         {this.props.children}
       </div>
