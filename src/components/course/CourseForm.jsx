@@ -8,7 +8,7 @@ const CourseForm = ({
   allAuthors,
   onSave,
   onChange,
-  loading,
+  saving,
   errors
 }) => {
   return (
@@ -46,8 +46,8 @@ const CourseForm = ({
       />
       <input
         type="submit"
-        disabled={loading}
-        value={loading ? "Saving..." : "Save"}
+        disabled={saving}
+        value={saving ? "Saving..." : "Save"}
         className="btn btn-primary"
         onClick={onSave}
       />
@@ -60,7 +60,7 @@ CourseForm.propTypes = {
   allAuthors: PropTypes.array,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  loading: PropTypes.bool,
+  saving: PropTypes.bool,
   errors: PropTypes.object
 };
 

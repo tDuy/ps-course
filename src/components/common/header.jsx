@@ -1,10 +1,14 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-export default function Header() {
+import PropTypes from "prop-types";
+import { NavLink, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import LoadingDots from "../common/LoadingDots.jsx";
+
+const Header = props => {
   return (
     <nav className="navbar navbar-default">
       <div className="container-fluid">
-        <NavLink to="/" className="navbar-brand">
+        <NavLink exact to="/" className="navbar-brand">
           LOGO
         </NavLink>
         <ul className="nav navbar-nav">
@@ -14,8 +18,8 @@ export default function Header() {
               to="/"
               activeClassName="active"
               activeStyle={{
-                color: "#fff",
-                backgroundColor: "#ff8b54"
+                color: "#555",
+                backgroundColor: "#e7e7e7"
               }}
             >
               Home
@@ -26,8 +30,8 @@ export default function Header() {
               to="/courses"
               activeClassName="active"
               activeStyle={{
-                color: "#fff",
-                backgroundColor: "#ff8b54"
+                color: "#555",
+                backgroundColor: "#e7e7e7"
               }}
             >
               Courses
@@ -38,15 +42,29 @@ export default function Header() {
               to="/about"
               activeClassName="active"
               activeStyle={{
-                color: "#fff",
-                backgroundColor: "#ff8b54"
+                color: "#555",
+                backgroundColor: "#e7e7e7"
               }}
             >
               About
             </NavLink>
           </li>
+          <li>{props.loading && <LoadingDots interval={100} dots={20} />}</li>
         </ul>
       </div>
     </nav>
   );
+};
+
+Header.propTypes = {
+  loading: PropTypes.bool.isRequired
+};
+
+function mapStateToProps(state) {
+  return {
+    loading: state.ajaxCallsInProgress > 0
+  };
 }
+
+export default withRouter(connect(mapStateToProps)(Header));
+// export default Header;
