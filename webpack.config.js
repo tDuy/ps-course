@@ -1,29 +1,43 @@
 const path = require("path");
 const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+// const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, "src/app.jsx"),
-    vendor: ["react", "react-dom"]
+    main: path.resolve(__dirname, "src/index.jsx"),
+    vendor: [
+      "react",
+      "react-dom",
+      "react-router",
+      "react-router-dom",
+      "redux",
+      "react-redux"
+    ]
   },
   output: {
-    filename: "[name].[hash].js",
+    filename: "[name].js",
     path: path.resolve(__dirname, "dist")
   },
   devtool: "source-map",
   module: {
-    rules: [{ test: /\.(js|jsx)$/, use: "babel-loader" }]
+    rules: [
+      { test: /\.(js|jsx)$/, use: "babel-loader" },
+      { test: /\.css$/, use: ["style-loader", "css-loader"] }
+    ]
   },
   devServer: {
-    contentBase: path.resolve(__dirname, "assets"),
+    historyApiFallback: true,
+    contentBase: path.resolve(__dirname, "dist"),
     hot: true
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: "./src/index.html",
-      inject: true
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "vendor"
     }),
+    // new HtmlWebpackPlugin({
+    //   template: "./src/index.html",
+    //   inject: true
+    // }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ]
